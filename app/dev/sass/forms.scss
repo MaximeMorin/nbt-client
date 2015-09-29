@@ -1,0 +1,49 @@
+.form {
+	margin: 1em 0;
+	padding: 0 1em;
+}
+
+.form-group {
+	margin: 1em 0;
+	padding: 1em;
+	border-radius: $borderRadius;
+	border: 1px solid $primaryColorGrayed;	
+}
+
+.form-group-legend {
+	font-weight: 600;
+}
+
+.form-label {
+	width: 50%; // Not 100% so that it works with checkbox and radio buttons.
+	display: inline-block;
+	margin: 0.75em 0 0 0;
+}
+
+.form-label:first-of-type {
+	margin-top: 0;
+}
+
+.form-field {
+	width: 100%;
+	margin: 0.25em 0 0 0;
+	padding: 0.5em;
+	border-radius: $borderRadius;	
+	border: 1px solid $primaryColorGrayed;
+}
+
+.form-field:active,
+.form-field:focus {
+	@extend .form-field;
+	outline: none;
+	box-shadow: 0 0 0.5em $boxShadowOutterColor;
+}
+
+.form-field[type="checkbox"],
+.form-field[type="radio"] {
+	width: auto;
+}
+
+.form-compact .form-field:last-of-type {
+	margin-bottom: 0;
+}

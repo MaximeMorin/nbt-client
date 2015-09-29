@@ -1,0 +1,20 @@
+{
+  "name": "nbt-client",
+  "version": "0.1.0",
+  "description": "NetBattleTech",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+	"grunt": "~0.4.1",
+    "grunt-sass": "~0.14.2",
+	"grunt-contrib-concat": "~0.5.0",
+	"grunt-contrib-copy": "~0.7.0",
+	"grunt-contrib-clean": "~0.6.0",
+	"grunt-contrib-uglify": "~0.9.2"
+  },
+  "author": "NBT",
+  "license": "Unlicensed"
+}

@@ -1,0 +1,30 @@
+.message {
+	margin: 1em;
+	padding: 1em;
+	border-radius: $borderRadius;	
+	border: 1px solid $primaryColorGrayed;	
+}
+
+.message-primary {
+	color: darken($primaryColor, 30);
+	background-color: lighten($primaryColor, 20);
+	border: 1px solid $primaryColor;	
+}
+
+.message-success {
+	color: darken($successColor, 30);
+	background-color: lighten($successColor, 20);
+	border: 1px solid $successColor;	
+}
+
+.message-warning {
+	color: darken($warningColor, 35);
+	background-color: lighten($warningColor, 20);
+	border: 1px solid $warningColor;	
+}
+
+.message-error {
+	color: darken($errorColor, 30);
+	background-color: lighten($errorColor, 40);
+	border: 1px solid $errorColor;	
+}

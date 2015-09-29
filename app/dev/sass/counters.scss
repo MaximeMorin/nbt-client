@@ -1,0 +1,21 @@
+.counter {
+	margin: 1em 0 0 1em;
+	padding: 0.5em 1em;
+	text-align: right;
+	display: inline-block;	
+	border-radius: $borderRadius;	
+	border: 1px solid $primaryColorGrayed;	
+}
+
+.counter:hover {
+	box-shadow: 0 0 0.5em $boxShadowOutterColor;
+}
+
+.counter-number {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.counter-item {
+	font-size: 0.8em;
+}

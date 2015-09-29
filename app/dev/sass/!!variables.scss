@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'Roboto-Light';
+	src: url('../fonts/Roboto/Roboto-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'RobotoSlab';
+	src: url('../fonts/RobotoSlab/RobotoSlab-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+$headingFont: Roboto-Light, sans-serif;
+$bodyFont: Roboto-Light, sans-serif;
+$specialFont: RobotoSlab, serif;
+
+$primaryColor: #62b0ff;
+$successColor: #5fcc4a;
+$warningColor: #ff9e57;
+$errorColor: #d40f26;
+
+$fontColor: #ddd;
+$backgroundColor: #222;
+
+$boxShadowOutterColor: rgba(0, 0, 0, .4);
+$boxShadowInnerColor: rgba(0, 0, 0, .3);
+
+$primaryColorGrayed: grayscale($primaryColor);
+$primaryColorDarkerGrayed: grayscale(darken($primaryColor, 20));
+$primaryColorLighterGrayed: grayscale(lighten($primaryColor, 20));
+
+$borderRadius: 3px;
+
+$unusedPink: #ff5786;

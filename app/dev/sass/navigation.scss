@@ -1,0 +1,11 @@
+.navigation {
+	margin: 1em;
+	padding: 1em;
+	display: inline-block;
+	border: 1px solid $primaryColorGrayed;
+}
+
+.navigation li {
+	margin: 0.1em 0;
+	list-style-type: none;
+}
