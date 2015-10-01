@@ -8,12 +8,18 @@
   },
   "dependencies": {},
   "devDependencies": {
-	"grunt": "~0.4.1",
+    "grunt": "~0.4.1",
     "grunt-sass": "~0.14.2",
-	"grunt-contrib-concat": "~0.5.0",
-	"grunt-contrib-copy": "~0.7.0",
-	"grunt-contrib-clean": "~0.6.0",
-	"grunt-contrib-uglify": "~0.9.2"
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-uglify": "~0.9.2",
+    "karma": "^0.13.10",
+    "grunt-karma": "^0.12.1",
+    "jasmine-core": "^2.3.4",
+    "karma-jasmine": "^0.3.6",
+    "phantomjs": "^1.9.18",
+    "karma-phantomjs-launcher": "^0.2.1"
   },
   "author": "NBT",
   "license": "Unlicensed"

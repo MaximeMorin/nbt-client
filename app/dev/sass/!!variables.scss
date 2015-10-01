@@ -27,10 +27,10 @@ $backgroundColor: #222;
 $boxShadowOutterColor: rgba(0, 0, 0, .4);
 $boxShadowInnerColor: rgba(0, 0, 0, .3);
 
+$dialogBackground: rgba(0, 0, 0, 0.5);
+
 $primaryColorGrayed: grayscale($primaryColor);
 $primaryColorDarkerGrayed: grayscale(darken($primaryColor, 20));
 $primaryColorLighterGrayed: grayscale(lighten($primaryColor, 20));
 
 $borderRadius: 3px;
-
-$unusedPink: #ff5786;
