@@ -1,10 +1,12 @@
-describe('Authentication Controller', function () {
+describe('Login Controller', function () {
 
 	var ctrl;
 
 	beforeEach(module('nbt.authentication'));	
-	beforeEach(inject(function ($controller) {
-		ctrl = $controller('loginController', {});
+	beforeEach(inject(function ($controller, $injector) {
+		ctrl = $controller('loginController', {
+			"authenticationFactory" : $injector.get('authenticationFactory')
+		});
 	}));
 
 	it('should have an empty username & password', function () {

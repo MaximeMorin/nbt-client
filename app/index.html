@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="nbt" class="no-js">
+<html lang="en" ng-app="nbt" class="no-js" ng-controller="mainController as main">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +13,8 @@
 	</head>
 	<body ng-controller="loginController as login">
 	
-		<div class="dialog d-login ng-hide" ng-show="login.isVisible()">
-			<div class="d-login-content">
+		<div class="dialog d-login ng-hide" ng-show="login.isVisible()" ng-click="login.hide()">
+			<div class="d-login-content" ng-click="$event.stopPropagation();">
 				<h1>Authentication</h1>
 				<form class="form" ng-submit="login.login()">
 					<fieldset class="form-group">
@@ -23,7 +23,8 @@
 						<input id="username" class="form-field" type="text" placeholder="Username" ng-model="login.data.username" />
 						<input id="password" class="form-field" type="password" placeholder="Password" ng-model="login.data.password" />												
 					</fieldset>			
-					<button class="button button-primary" type="submit">Login</button>
+					<button class="button button-primary" type="submit" ng-click="login.doLogin()">Login</button>
+					<button class="button" type="button" ng-click="login.hide()">Cancel</button>
 				</form>
 			</div>
 		</div>		
@@ -34,18 +35,15 @@
 			</header>		
 			<nav>
 				<ul class="navigation">
-					<li>
-						<a href="#">Link 1</a>
-					</li>
-					<li>
-						<a href="#">Link 2</a>
-					</li>
-					<li>
-						<a href="#">Link 3</a>
-					</li>
-					<li>
-						<a href="#">Link 4</a>
-					</li>			
+					<li ng-hide="main.isAuthenticated()">
+						<a href="#" ng-click="login.show()">Login</a>
+					</li>		
+					<li ng-show="main.isAuthenticated()">
+						<a href="#">{{ main.getUsername() }}'s profile</a>
+					</li>		
+					<li ng-show="main.isAuthenticated()">
+						<a href="#" ng-click="login.doLogout()">Logout</a>
+					</li>		
 				</ul>				
 			</nav>
 	

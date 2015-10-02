@@ -23,6 +23,7 @@ $errorColor: #d40f26;
 
 $fontColor: #ddd;
 $backgroundColor: #222;
+$backgroundColorLighten: lighten($backgroundColor, 20);
 
 $boxShadowOutterColor: rgba(0, 0, 0, .4);
 $boxShadowInnerColor: rgba(0, 0, 0, .3);

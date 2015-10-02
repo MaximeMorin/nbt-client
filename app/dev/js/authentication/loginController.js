@@ -1,4 +1,4 @@
-angular.module('nbt.authentication').controller('loginController', [function() {
+angular.module('nbt.authentication').controller('loginController', ['authenticationFactory', function(authenticationFactory) {
 	var ctrl = this;
 		
 	ctrl.visible = false;
@@ -17,6 +17,15 @@ angular.module('nbt.authentication').controller('loginController', [function() {
 	
 	ctrl.hide = function() {
 		ctrl.visible = false;
+	};
+	
+	ctrl.doLogin = function() {
+		authenticationFactory.authenticate(ctrl.data.username, ctrl.data.password);
+		ctrl.hide();
+	};
+	
+	ctrl.doLogout = function() {
+		authenticationFactory.deauthenticate();
 	};
 	
 	return ctrl;
