@@ -1,11 +1,27 @@
+nav {
+	overflow: hidden;
+}
+
 .navigation {
-	margin: 1em;
-	padding: 1em;
 	display: inline-block;
-	border: 1px solid $primaryColorGrayed;
+	margin: 0;
+	padding: 0;
 }
 
 .navigation li {
-	margin: 0.1em 0;
+	display: inline;
+	margin: 0.1em 0 0.1em 1em;
 	list-style-type: none;
+}
+
+.navigation li:first-child {
+	margin-left: 0;
+}
+
+.n-site {
+	float: left;
+}
+
+.n-user {
+	float: right;
 }

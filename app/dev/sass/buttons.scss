@@ -3,8 +3,8 @@
 	display: inline-block;
 	margin: 0 0.5em 0.5em 0;
 	padding: 0.5em 0.75em 0.55em 0.75em;
-	color: black;
-	background-color: $backgroundColorLighten;	
+	color: $bodyFont;
+	background-color: $backgroundColor;
 	outline: none;
 	border-radius: $borderRadius;	
 	border: 1px solid $primaryColorDarkerGrayed;
@@ -18,12 +18,12 @@
 }
 
 .button:hover {
-	color: black;
+	color: $bodyFont;
 	box-shadow: 0 0 0.5em $boxShadowOutterColor;
 }
 
 .button:active {
-	color: black;
+	color: $bodyFont;
 	box-shadow: inset 0 0.1em 0.5em $boxShadowInnerColor;
 }
 
@@ -34,57 +34,57 @@
 .button-primary {
 	@extend .button;
 	color: white;
-	background-color: darken($primaryColor, 5);
-	border: 1px solid darken($primaryColor, 20);	
+	background-color: darken($primaryColor, 10);
+	border: 1px solid darken($primaryColor, 40);	
 }
 
 .button-primary:hover,
 .button-primary:active,
 .button-primary:focus {
 	color: white;
-	background-color: darken($primaryColor, 10);
+	background-color: darken($primaryColor, 20);
 }
 
 .button-success {
 	@extend .button;
 	color: white;
-	background-color: darken($successColor, 5);
-	border: 1px solid darken($successColor, 20);
+	background-color: darken($successColor, 10);
+	border: 1px solid darken($successColor, 40);
 }
 
 .button-success:hover,
 .button-success:active,
 .button-success:focus {
 	color: white;
-	background-color: darken($successColor, 10);
+	background-color: darken($successColor, 20);
 }
 
 .button-warning {
 	@extend .button;
 	color: white;
-	background-color: darken($warningColor, 5);
-	border: 1px solid darken($warningColor, 20);
+	background-color: darken($warningColor, 10);
+	border: 1px solid darken($warningColor, 40);
 }
 
 .button-warning:hover,
 .button-warning:active,
 .button-warning:focus {
 	color: white;
-	background-color: darken($warningColor, 10);
+	background-color: darken($warningColor, 20);
 }
 
 .button-error {
 	@extend .button;
 	color: white;	
-	background-color: darken($errorColor, 5);
-	border: 1px solid darken($errorColor, 20);
+	background-color: darken($errorColor, 10);
+	border: 1px solid darken($errorColor, 40);
 }
 
 .button-error:hover,
 .button-error:focus,
 .button-error:active {
 	color: white;
-	background-color: darken($errorColor, 10);
+	background-color: darken($errorColor, 20);
 }
 
 .button[disabled],
@@ -101,7 +101,7 @@
 	cursor: default;
 	pointer-events: none;
 	color: lighten($fontColor, 70);
-	background-color: lighten($primaryColorLighterGrayed, 5);
-	border: 1px solid lighten($primaryColorLighterGrayed, 5);
+	background-color: lighten($primaryColorLighterGrayed, 10);
+	border: 1px solid lighten($primaryColorLighterGrayed, 10);
 	box-shadow: none;
 }
