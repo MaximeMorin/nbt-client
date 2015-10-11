@@ -29,32 +29,56 @@
 			</div>
 		</div>		
 		
-		<article>
-			<header>
-				
-			</header>		
+		<article>	
 			<nav>
-				<ul class="navigation">
+				<ul class="navigation n-site">
+					<li>
+						<a href="#">Home</a>
+					</li>		
+					<li>
+						<a href="#">Rules</a>
+					</li>		
+					<li>
+						<a href="#">Starmap</a>
+					</li>		
+					<li>
+						<a href="#">Community</a>
+					</li>		
+					<li>
+						<a href="#">Units</a>
+					</li>		
+					<li>
+						<a href="#">Staff</a>
+					</li>	
+				</ul>
+				<ul class="navigation n-user">
 					<li ng-hide="main.isAuthenticated()">
 						<a href="#" ng-click="login.show()">Login</a>
 					</li>		
+					<li ng-hide="main.isAuthenticated()">
+						<a href="#">Register</a>
+					</li>		
 					<li ng-show="main.isAuthenticated()">
-						<a href="#">{{ main.getUsername() }}'s profile</a>
+						<a href="#">{{ main.getDisplayName() }}'s profile</a>
 					</li>		
 					<li ng-show="main.isAuthenticated()">
 						<a href="#" ng-click="login.doLogout()">Logout</a>
 					</li>		
 				</ul>				
 			</nav>
+			
+			<header>
+				<h1>Welcome to NetBattleTech</h1>
+			</header>				
 	
-			<h1>Welcome to NetBattleTech</h1>
-			<p>Lorem goes here...</p>
-			<button class="button button-primary" ng-click="login.show()">
-				Login
-			</button>
+			<section>
+				<p>Lorem goes here...</p>
+			</section>
 			
 			<footer>
-				
+				<p class="copyright">
+					&copy; 2015 &ndash; NetBattleTech
+				</p>
 			</footer>
 		</article>
 						

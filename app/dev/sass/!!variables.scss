@@ -25,7 +25,7 @@ $fontColor: #ddd;
 $backgroundColor: #222;
 $backgroundColorLighten: lighten($backgroundColor, 20);
 
-$boxShadowOutterColor: rgba(0, 0, 0, .4);
+$boxShadowOutterColor: rgba(255, 255, 255, .3);
 $boxShadowInnerColor: rgba(0, 0, 0, .3);
 
 $dialogBackground: rgba(0, 0, 0, 0.5);
@@ -35,3 +35,5 @@ $primaryColorDarkerGrayed: grayscale(darken($primaryColor, 20));
 $primaryColorLighterGrayed: grayscale(lighten($primaryColor, 20));
 
 $borderRadius: 3px;
+
+$footerHeight: 30px;

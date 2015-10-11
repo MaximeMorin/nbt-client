@@ -13,37 +13,94 @@ angular.module('nbt', [
 angular.module('nbt').config(['$routeProvider', function ($routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);
-angular.module('nbt.authentication').factory('authenticationFactory', [function() {
+angular.module('nbt.authentication').factory('authenticationCacheService', [function() {
+	var service = this;		
+				
+	service.cache = function(data) {
+		try {
+			localStorage.setItem('authentication', JSON.stringify(data));
+		} catch (e) {
+			console.error('Failed to cache authentication data.');
+		}				
+	};
+	
+	service.clear = function() {
+		localStorage.removeItem('authentication');
+	};	
+		
+	service.getDisplayName = function() {
+		var displayName = null;
+		
+		if (service.isAuthenticated()) {
+			displayName = service._getData().displayName;
+		}
+		
+		return displayName;
+	};
+	
+	service.getToken = function() {
+		var token = null;
+		
+		if (service.isAuthenticated()) {
+			var data = service._getData();
+			token = {
+				"value" : data.value,
+				"expiry" : data.expiry,
+				"valid" : data.valid
+			};
+		}
+				
+		return token;
+	};
+	
+	service.isAuthenticated = function() {
+		return service._getData() !== null;
+	};
+		
+	service._getData = function() {
+		var data = localStorage.getItem('authentication');
+		
+		if (data !== null) {
+			data = JSON.parse(data);
+		}
+		
+		return data;
+	};	
+	
+	return service;
+}]);
+angular.module('nbt.authentication').factory('authenticationFactory', ['authenticationService', 'authenticationCacheService', function(authenticationService, authenticationCacheService) {
 	var factory = this;
 		
 	factory.authenticate = function(username, password) {
-		localStorage.setItem('user', JSON.stringify({ "username" : username }));
+		var promise = authenticationService.authenticate({ "username" : username, "password" : password }).$promise;
+		promise.then(function(results) {
+			authenticationCacheService.cache(results.data);
+		}, function(results) {
+			alert('Oh snap!');
+		});
+		return promise;		
 	};
 	
 	factory.deauthenticate = function() {
-		localStorage.removeItem('user');
+		// TODO
+		authenticationCacheService.clear();
 	};
 	
-	factory.getUser = function() {
-		return JSON.parse(localStorage.getItem('user'));
-	};
-	
-	factory.getUsername = function() {
-		var user = factory.getUser();
-		var username = null;
-		
-		if (angular.isObject(user)) {
-			username = user.username;
-		}
-		
-		return username;
+	factory.getDisplayName = function() {
+		return authenticationCacheService.getDisplayName();
 	};
 	
 	factory.isAuthenticated = function() {
-		return angular.isObject(factory.getUser());
+		return authenticationCacheService.isAuthenticated();
 	};
 	
 	return factory;
+}]);
+angular.module('nbt.authentication').factory('authenticationService', ['$resource', function ($resource) {
+	return $resource('http://api-dev.netbattletech.com/security/tokens/', null, {
+		'authenticate': { method: 'POST', params: null, isArray: false }
+	});
 }]);
 angular.module('nbt.authentication').controller('loginController', ['authenticationFactory', function(authenticationFactory) {
 	var ctrl = this;

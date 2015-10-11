@@ -2,6 +2,7 @@ describe('Login Controller', function () {
 
 	var ctrl;
 
+	beforeEach(module('ngResource'));	
 	beforeEach(module('nbt.authentication'));	
 	beforeEach(inject(function ($controller, $injector) {
 		ctrl = $controller('loginController', {

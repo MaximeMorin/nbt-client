@@ -1,0 +1,29 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 $footerHeight;
+}
+
+header, section, nav, footer {
+	margin: 1em;
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: $footerHeight;
+	margin: 0;
+	padding: 0 1em;
+}
+
+.copyright {
+	margin: 0;
+	line-height: $footerHeight;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 0.8em;
+}
