@@ -55,8 +55,11 @@
 					<li ng-hide="main.isAuthenticated()">
 						<a href="#" ng-click="login.show()">Login</a>
 					</li>		
+					<li ng-hide="main.isAuthenticated()">
+						<a href="#">Register</a>
+					</li>		
 					<li ng-show="main.isAuthenticated()">
-						<a href="#">{{ main.getUsername() }}'s profile</a>
+						<a href="#">{{ main.getDisplayName() }}'s profile</a>
 					</li>		
 					<li ng-show="main.isAuthenticated()">
 						<a href="#" ng-click="login.doLogout()">Logout</a>
@@ -73,7 +76,9 @@
 			</section>
 			
 			<footer>
-				
+				<p class="copyright">
+					&copy; 2015 &ndash; NetBattleTech
+				</p>
 			</footer>
 		</article>
 						

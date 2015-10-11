@@ -1,31 +1,27 @@
-angular.module('nbt.authentication').factory('authenticationFactory', [function() {
+angular.module('nbt.authentication').factory('authenticationFactory', ['authenticationService', 'authenticationCacheService', function(authenticationService, authenticationCacheService) {
 	var factory = this;
 		
 	factory.authenticate = function(username, password) {
-		localStorage.setItem('user', JSON.stringify({ "username" : username }));
+		var promise = authenticationService.authenticate({ "username" : username, "password" : password }).$promise;
+		promise.then(function(results) {
+			authenticationCacheService.cache(results.data);
+		}, function(results) {
+			alert('Oh snap!');
+		});
+		return promise;		
 	};
 	
 	factory.deauthenticate = function() {
-		localStorage.removeItem('user');
+		// TODO
+		authenticationCacheService.clear();
 	};
 	
-	factory.getUser = function() {
-		return JSON.parse(localStorage.getItem('user'));
-	};
-	
-	factory.getUsername = function() {
-		var user = factory.getUser();
-		var username = null;
-		
-		if (angular.isObject(user)) {
-			username = user.username;
-		}
-		
-		return username;
+	factory.getDisplayName = function() {
+		return authenticationCacheService.getDisplayName();
 	};
 	
 	factory.isAuthenticated = function() {
-		return angular.isObject(factory.getUser());
+		return authenticationCacheService.isAuthenticated();
 	};
 	
 	return factory;
