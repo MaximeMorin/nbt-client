@@ -3,17 +3,26 @@ angular.module('nbt.authentication').factory('authenticationFactory', ['authenti
 		
 	factory.authenticate = function(username, password) {
 		var promise = authenticationService.authenticate({ "username" : username, "password" : password }).$promise;
+		
 		promise.then(function(results) {
 			authenticationCacheService.cache(results.data);
 		}, function(results) {
 			alert('Oh snap!');
 		});
+		
 		return promise;		
 	};
 	
 	factory.deauthenticate = function() {
-		// TODO
-		authenticationCacheService.clear();
+		var promise = authenticationService.deauthenticate().$promise;
+		
+		promise.then(function(results) {
+			authenticationCacheService.clear();
+		}, function(results) {
+			alert('Failed to deauthenticate');
+		});	
+		
+		return promise;
 	};
 	
 	factory.getDisplayName = function() {
@@ -22,6 +31,10 @@ angular.module('nbt.authentication').factory('authenticationFactory', ['authenti
 	
 	factory.isAuthenticated = function() {
 		return authenticationCacheService.isAuthenticated();
+	};
+	
+	factory.getToken = function() {
+		return authenticationCacheService.getToken();
 	};
 	
 	return factory;

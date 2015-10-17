@@ -74,17 +74,26 @@ angular.module('nbt.authentication').factory('authenticationFactory', ['authenti
 		
 	factory.authenticate = function(username, password) {
 		var promise = authenticationService.authenticate({ "username" : username, "password" : password }).$promise;
+		
 		promise.then(function(results) {
 			authenticationCacheService.cache(results.data);
 		}, function(results) {
 			alert('Oh snap!');
 		});
+		
 		return promise;		
 	};
 	
 	factory.deauthenticate = function() {
-		// TODO
-		authenticationCacheService.clear();
+		var promise = authenticationService.deauthenticate().$promise;
+		
+		promise.then(function(results) {
+			authenticationCacheService.clear();
+		}, function(results) {
+			alert('Failed to deauthenticate');
+		});	
+		
+		return promise;
 	};
 	
 	factory.getDisplayName = function() {
@@ -95,11 +104,46 @@ angular.module('nbt.authentication').factory('authenticationFactory', ['authenti
 		return authenticationCacheService.isAuthenticated();
 	};
 	
+	factory.getToken = function() {
+		return authenticationCacheService.getToken();
+	};
+	
 	return factory;
+}]);
+angular.module('nbt.authentication').factory('authenticationInterceptor', ['authenticationCacheService', function(authenticationCacheService) {
+	var factory = this;
+	
+	factory.request = function(config) {
+		config.headers = config.headers || {};
+
+		if (authenticationCacheService.isAuthenticated()) {
+			var token = authenticationCacheService.getToken();
+			if (token.valid) {
+				config.headers['X-NBT-Token'] = token.value;
+			}
+		}
+
+		return config;		
+	};
+
+	factory.response = function(response) {
+		if (response.status === 401) {
+			// Login required.
+		}
+
+		return response;		
+	};
+
+	return factory;
+}]);
+
+angular.module('nbt.authentication').config(["$httpProvider", function($httpProvider) {
+	$httpProvider.interceptors.push('authenticationInterceptor');
 }]);
 angular.module('nbt.authentication').factory('authenticationService', ['$resource', function ($resource) {
 	return $resource('http://api-dev.netbattletech.com/security/tokens/', null, {
-		'authenticate': { method: 'POST', params: null, isArray: false }
+		'authenticate': { method: 'POST', params: null, isArray: false },
+		'deauthenticate': { method: 'DELETE', params: null, isArray: false }
 	});
 }]);
 angular.module('nbt.authentication').controller('loginController', ['authenticationFactory', function(authenticationFactory) {
@@ -137,8 +181,8 @@ angular.module('nbt.authentication').controller('loginController', ['authenticat
 angular.module('nbt.main').controller('mainController', ['authenticationFactory', function(authenticationFactory) {
 	var ctrl = this;
 		
-	ctrl.getUsername = function() {
-		return authenticationFactory.getUsername();
+	ctrl.getDisplayName = function() {
+		return authenticationFactory.getDisplayName();
 	};
 	
 	ctrl.isAuthenticated = function() {
