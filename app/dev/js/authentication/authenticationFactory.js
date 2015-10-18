@@ -14,7 +14,7 @@ angular.module('nbt.authentication').factory('authenticationFactory', ['authenti
 	};
 	
 	factory.deauthenticate = function() {
-		var promise = authenticationService.deauthenticate().$promise;
+		var promise = authenticationService.deauthenticate({ "token" : factory.getToken().value }).$promise;
 		
 		promise.then(function(results) {
 			authenticationCacheService.clear();
