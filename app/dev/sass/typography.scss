@@ -50,5 +50,5 @@ a:link {
 }
 
 a:hover {
-	color: lighten($primaryColor, 20);
+	color: darken($primaryColor, 20);
 }

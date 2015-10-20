@@ -15,16 +15,23 @@
 	
 		<div class="dialog d-login ng-hide" ng-show="login.isVisible()" ng-click="login.hide()">
 			<div class="d-login-content" ng-click="$event.stopPropagation();">
-				<h1>Authentication</h1>
-				<form class="form" ng-submit="login.login()">
+				
+				<form class="form" ng-submit="login.login()">				
+					<h1 class="title">Authentication</h1>
+					
 					<fieldset class="form-group">
 						<legend class="form-group-legend">Credentials</legend>					
 
 						<input id="username" class="form-field" type="text" placeholder="Username" ng-model="login.data.username" />
 						<input id="password" class="form-field" type="password" placeholder="Password" ng-model="login.data.password" />												
 					</fieldset>			
+					
 					<button class="button button-primary" type="submit" ng-click="login.doLogin()">Login</button>
 					<button class="button" type="button" ng-click="login.hide()">Cancel</button>
+
+					<p>
+						<a href="#/">Forgot Password?</a>
+					</p>					
 				</form>
 			</div>
 		</div>		
